@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header>
+    <a href="index.html">MyHealth</a>
+    <nav>
+      <ul>
+        <li><a href="calorie.html">Calorie Report</a></li>
+        <li><a href="#">Workouts</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Calorie Details</h1>
+    <div id="result"> </div>
+  </main>
+
+  <footer>
+    <p>2023 MyHealth App. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    const meals = [
+      {
+        id: '1',
+        meal: "Breakfast",
+        item: "Dosa",
+        calories: 200
+      },
+      {
+        id: '2',
+        meal: "Lunch",
+        item: "Dal Bhat",
+        calories: 500
+      },
+      {
+        id: '3',
+        meal: "Dinner",
+        item: "Roti Sabzi",
+        calories: 300
+      }
+    ]
+
+    
+    function getId(id){
+      let url = new URL(window.location.href);
+      return url.searchParams.get(id);
+    }
+
+    let mealId = getId("id")
+let selectedMeal;
+    if(mealId){
+      for(let i=0; i<meals.length; i++){
+        if(mealId === meals[i].id){
+         selectedMeal = meals[i]; 
+        }
+      }
+      printResult()
+    } 
+
+    function printResult(){
+      const result = document.querySelector('#result');
+      result.innerHTML = `<h2>${selectedMeal.meal}</h2> <ul><li>Meal: ${selectedMeal.meal}</li><li>Item: ${selectedMeal.item}</li><li>Calories: ${selectedMeal.calories}</li></ul>`
+      return result;
+    }
+
+    
+
+
+  </script>
+</body>
+
+</html>
